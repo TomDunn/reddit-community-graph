@@ -1,15 +1,36 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <title>HI</title>
-        <link rel="stylesheet" href="static/css/reset.css" />
+        <title>A graph of communities on Reddit</title>
     </head>
     <body>
-        <div id="sigma-example" style="position:absolute; top:0; left:0; width:100%; height:100%; background-color: black">
-        </div>
-
-        <script type="text/javascript" src="static/js/sigma.min.js"></script>
-        <script type="text/javascript" src="static/js/sigma.parseGexf.js"></script>
-        <script type="text/javascript" src="static/js/draw_graph.js"></script>
+        <h2>Communities of Reddit</h2>
+        <h4>What is it?</h4>
+        <p>
+            I gathered data for over 110,000 subreddits. Then looked at the description for each one 
+            to see if it linked to any other subreddits. Links generally indicate a connection between 
+            the two subreddits. By doing this, I identified clusters of subreddits that form communities.
+        </p>
+        <p>
+            Each node(dot) on the graph you are about to see represents a subreddit. Each edge(line) represents 
+            a connection between two subreddits. The blobs of color represent closely connected subreddits, these 
+            are communities.
+        </p>
+        <h4>Why?</h4>
+        <p>
+            I was inspired by a <a href="http://www.reddit.com/r/TheoryOfReddit/comments/1e596w/a_graph_of_reddit_linking_subs_based_on_internal/">
+            a post on reddit</a> by <a href="http://www.reddit.com/user/sharkbait784">u/sharkbait784</a>. His graph were based on cross posts 
+            between subreddits. I thought it would be interesting to see how subreddits are related based on links to other subreddits in the 
+            descriptions of them.
+        </p>
+        <h2>Instructions</h2>
+        <p>
+            Please use <a href="https://www.google.com/chrome/">Google Chrome</a> or <a href="http://www.mozilla.org/en-US/firefox/new/">Mozilla Firefox</a>
+            . Ideally Chrome, it offers the best performance. Firefox works well, but is somewhat sluggish. Internet Explorer is untested and not acceptable. 
+        </p>
+        <p>
+            Click and drag to move around, use scrolling to zoom in and out. Hovering over a node will reveal its label.
+            <a href="graph.html">Here it is</a>.
+        </p>
     </body>
 </html>
