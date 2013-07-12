@@ -18,6 +18,10 @@ function init() {
     sigInst.parseGexf('static/data/communities.gexf');
     sigInst.draw();
 
+    sigInst.bind('upnodes', function(e) {
+        window.open('http://reddit.com/r/' + sigInst.getNodes(e.content[0]).label, '_blank');
+    });
+
     window.searchSubs = function(term) {
         currentSearchTerm = term = term.toLowerCase();
 
