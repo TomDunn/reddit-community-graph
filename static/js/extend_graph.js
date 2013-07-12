@@ -10,10 +10,14 @@ function extend_graph(sigInst) {
     var linkContainer = $('#sub-link');
     var selectedNode = '';
 
-    sigInst.bind('upnodes', function(e) {
-        selectedNode = sigInst.getNodes(e.content[0]);
+    var updateSelected = function(n) {
+        selectedNode = n;
         linkContainer.html('<a target="_blank" href="http://reddit.com/r/' + selectedNode.label + '">r/' + selectedNode.label + '</a>');
         panel.show();
+    };
+
+    sigInst.bind('upnodes', function(e) {
+        updateSelected(sigInst.getNodes(e.content[0]));
     });
 
     var activateConnectedNodesBox = $('#activate-connected-nodes');
@@ -95,6 +99,7 @@ function extend_graph(sigInst) {
 
             if (node.label.toLowerCase() == term) {
                 node.active = true;
+                updateSelected(node);
             }
 
         });
