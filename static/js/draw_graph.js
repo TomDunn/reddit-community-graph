@@ -9,7 +9,7 @@ function init() {
       }).graphProperties({
         minNodeSize: 0.05,
         maxNodeSize: .8,
-        minEdgeSize: .05,
+        minEdgeSize: .09,
         maxEdgeSize: .4
     }).mouseProperties({
         maxRatio: 200
@@ -22,6 +22,7 @@ function init() {
         window.open('http://reddit.com/r/' + sigInst.getNodes(e.content[0]).label, '_blank');
     });
 
+    var currentSearchTerm = '';
     window.searchSubs = function(term) {
         currentSearchTerm = term = term.toLowerCase();
 
@@ -44,6 +45,28 @@ function init() {
 
         sigInst.position(0,0,1).draw();
     };
+
+    sigInst.bind('overnodes', function(e) {
+        var nodes = e.content;
+        var neighbors = {};
+        sigInst.iterEdges(function(edge) {
+            if(nodes.indexOf(edge.source) >= 0 || nodes.indexOf(edge.target) >= 0) {
+                neighbors[edge.source] = 1;
+                neighbors[edge.target] = 1;
+            }
+        }).iterNodes(function(n) {
+            if(neighbors[n.id]) {
+                n.active = true;
+            }
+        }).draw(2,2,2);
+    });
+
+    sigInst.bind('outnodes', function(e) {
+        sigInst.iterNodes(function(node) {
+            if (node.label == currentSearchTerm) return;
+            node.active = false
+        }).draw(2,2,2);
+    });
 }
 
 $('#search-graph').bind('keydown', function(e) {
